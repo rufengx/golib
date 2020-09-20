@@ -14,8 +14,8 @@ var (
 )
 
 type RequestID struct {
-	RequestTimeNano uint64
-	LocalIPv4       net.IP
+	RequestTime time.Time
+	LocalIPv4   net.IP
 }
 
 func init() {
@@ -67,7 +67,7 @@ func ParseRequestID(requestID string) (*RequestID, error) {
 	bytes[3] = byte((ip >> 24) & 0xFF)
 
 	return &RequestID{
-		RequestTimeNano: tsNano,
-		LocalIPv4:       net.IPv4(bytes[3], bytes[2], bytes[1], bytes[0]),
+		RequestTime: time.Unix(0, int64(tsNano)),
+		LocalIPv4:   net.IPv4(bytes[3], bytes[2], bytes[1], bytes[0]),
 	}, nil
 }

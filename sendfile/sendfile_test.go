@@ -18,7 +18,7 @@ func TestSendfile(t *testing.T) {
 	wg := sync.WaitGroup{}
 	wg.Add(2)
 
-	// server listen
+	// xio listen
 	go func() {
 		defer wg.Done()
 		listen, err := net.Listen("tcp", "127.0.0.1:9999")
